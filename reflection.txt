@@ -1,0 +1,5 @@
+This project shows how Docker helps run apps in isolated containers. I used Node.js for a web service and PostgreSQL as a database. I manually created a Docker network and linked the two containers.
+
+I also added a creative touch by running multiple instances of the web service to simulate load balancing.
+
+It was challenging but helped me understand Docker better, especially networking and volume management. In the future, I would add CI/CD and use Docker Compose for easier management.
