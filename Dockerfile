@@ -8,4 +8,7 @@ RUN npm install
 COPY . .
 
 EXPOSE 3000
-CMD [ "npm", "start" ]
+
+HEALTHCHECK CMD curl --fail http://localhost:3000 || exit 1
+
+CMD ["npm", "start"]
