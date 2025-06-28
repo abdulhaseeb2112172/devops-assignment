@@ -1,35 +1,22 @@
-# 🗂️ Task Manager – Docker Microservices Application
+Haseeb's Docker Microservices: Task Manager App
 
-## 📌 Description
+ Description
+A basic microservice app using Docker. It has a Node.js web server and PostgreSQL database. All components are containerized and manually networked using Docker.
 
-This is a microservices-based Task Manager application developed using **Node.js** and **PostgreSQL**, containerized using Docker.
+ Architecture
+- Web Service: Node.js app
+- Database: PostgreSQL
+- Connected via Docker bridge network `haseeb-network`
+- Docker volume stores persistent DB data
+ Commands to Run:
+docker network create haseeb-network
 
-## ⚙️ Tech Stack
+docker volume create haseeb-db-data
 
-- Node.js (Web API)
-- PostgreSQL (Database)
-- Docker (manual CLI only)
+docker run -d --name haseeb-db --network haseeb-network -v haseeb-db-data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=haseebpass postgres
 
-## 🐳 Docker Commands
+docker build -t haseeb/web-service ./web
 
-```bash
-docker network create app-network
+docker run -d --name haseeb-web --network haseeb-network -p 3000:3000 haseeb/web-service
 
-docker volume create db-data
-
-docker run -d --name db-container --network app-network -v db-data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=secret postgres
-
-docker build -t web-service ./web
-
-docker run -d --name web-container --network app-network -p 3000:3000 web-service
-```
-
-## 🧪 Sample API Test
-
-```bash
-curl http://localhost:3000
-```
-
-## 👨‍💻 Author
-
-Abdul Haseeb – 2112172
+docker run -d --name haseeb-web-2 --network haseeb-network -p 3001:3000 haseeb/web-service
