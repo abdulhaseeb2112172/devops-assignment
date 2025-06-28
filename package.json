@@ -1,7 +1,6 @@
 {
-  "name": "web-service",
+  "name": "haseeb-task-manager",
   "version": "1.0.0",
-  "description": "Simple Node.js web service for Docker demo",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
